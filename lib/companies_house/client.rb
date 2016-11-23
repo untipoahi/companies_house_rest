@@ -26,6 +26,19 @@ module CompaniesHouse
       request(:company, id)
     end
 
+    def search_company(query, params = {})
+      Request.new(
+          connection: connection,
+          api_key: @api_key,
+          endpoint: @endpoint,
+
+          path: "search/companies/?q=#{query}",
+          query: params,
+
+          resource_type: :company,
+      ).execute
+    end
+
     # The API endpoint for company officers is paginated, and not all of the officers may
     # be returned in the first request. We deal with this by collating all the pages of
     # results into one result set before returning them.
