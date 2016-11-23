@@ -32,10 +32,10 @@ module CompaniesHouse
           api_key: @api_key,
           endpoint: @endpoint,
 
-          path: "search/companies/?q=#{query}",
-          query: params,
+          path: "search/companies",
+          query: params.merge(:q => query),
 
-          resource_type: :company,
+          resource_type: :company
       ).execute
     end
 
